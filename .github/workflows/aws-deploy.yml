@@ -22,6 +22,43 @@ on:
         - ci/*
         - chore/*
         - revert/*
+        - fix/*
+        - perf/*`
+        - security/*
+        - build/*
+        - config/*
+        - deploy/*
+        - dependency/*
+        - merge/*
+        - version/*
+        - sync/*
+        - init/*
+        - add/*
+        - remove/*
+        - create/*
+        - delete/*
+        - upgrade/*
+        - downgrade/*
+        - revert/*
+        - move/*
+        - rename/*
+        - copy/*
+        - resolve/*
+        - improve/*
+        - make/*
+        - start/*
+        - stop/*
+        - finish/*
+        - cancel/*
+        - debug/*
+        - publish/*
+        - draft/*
+        - tag/*
+        - backport/*
+        - squash/*
+        - rebase/*
+        - fixup/*
+        - revert/*
 jobs:
   deploy:
     runs-on: ubuntu-latest
